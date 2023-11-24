@@ -1,12 +1,12 @@
 package com.personnages.donjonsdragonsspringboot.model;
 
-public class Personnages {
+public class Personnage {
     private int id;
     private String nom;
     private String type;
     private int vie;
 
-    public Personnages(int id, String nom, String type, int vie) {
+    public Personnage(int id, String nom, String type, int vie) {
         this.id = id;
         this.nom = nom;
         this.type = type;

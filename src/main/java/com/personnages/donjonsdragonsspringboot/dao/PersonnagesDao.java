@@ -1,11 +1,13 @@
 package com.personnages.donjonsdragonsspringboot.dao;
 
-import com.personnages.donjonsdragonsspringboot.model.Personnages;
+import com.personnages.donjonsdragonsspringboot.model.Personnage;
 
 import java.util.List;
 
 public interface PersonnagesDao {
-    List<Personnages> findAll();
-    Personnages findById(int id);
-    Personnages save(Personnages personnages);
+    List<Personnage> findAll();
+    Personnage findById(int id);
+    Personnage save(Personnage personnages);
+    void deleteById(int id);
+    Personnage updateById(int id, Personnage personnage);
 }

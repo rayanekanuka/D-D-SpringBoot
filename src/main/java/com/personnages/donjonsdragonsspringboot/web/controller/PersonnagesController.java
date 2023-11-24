@@ -1,7 +1,7 @@
 package com.personnages.donjonsdragonsspringboot.web.controller;
 
 import com.personnages.donjonsdragonsspringboot.dao.PersonnagesDao;
-import com.personnages.donjonsdragonsspringboot.model.Personnages;
+import com.personnages.donjonsdragonsspringboot.model.Personnage;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,7 +24,7 @@ public class PersonnagesController {
      */
 
     @GetMapping("/Personnages")
-    public List<Personnages> listePersonnages() {
+    public List<Personnage> listePersonnages() {
         return personnagesDao.findAll();
     }
 
@@ -33,18 +33,39 @@ public class PersonnagesController {
      * @param id
      * @return
      */
-    @GetMapping(value = "/Personnages/{id}")
-    public Personnages afficherUnPersonnage(@PathVariable int id) {
+    @GetMapping("/Personnages/{id}")
+    public Personnage afficherUnPersonnage(@PathVariable int id) {
         return personnagesDao.findById(id);
     }
 
-    @PostMapping(value = "Personnages")
-    public Personnages ajouterUnPersonnage(@RequestBody Personnages personnages) {
+    /**
+     * Ajoute un personnage
+     * @param personnages
+     * @return
+     */
+    @PostMapping("/Personnages")
+    public Personnage ajouterUnPersonnage(@RequestBody Personnage personnages) {
         return personnagesDao.save(personnages);
     }
-q
-//    @PutMapping(value = "Personnages")
-//    public Personnages modifierUnPersonnage(@RequestBody Personnages personnages) {
-//        return personnagesDao.modyfiById(personnages);
-//    }
+
+    /**
+     * Modifie un personnage identifié par un id
+     * @param id
+     * @return
+     */
+    @PutMapping("/Personnages/{id}")
+    public Personnage modifierUnPersonnage(@PathVariable int id, @RequestBody Personnage personnage) {
+        return personnagesDao.updateById(id, personnage);
+    }
+
+    /**
+     * Supprime un personnage identifié par un id
+     * @param id
+     * @return
+     */
+
+    @DeleteMapping("/Personnages/{id}")
+    public void supprimerUnPersonnage(@PathVariable int id) {
+        personnagesDao.deleteById(id);
+    }
 }

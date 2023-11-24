@@ -1,6 +1,6 @@
 package com.personnages.donjonsdragonsspringboot.dao;
 
-import com.personnages.donjonsdragonsspringboot.model.Personnages;
+import com.personnages.donjonsdragonsspringboot.model.Personnage;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -8,23 +8,22 @@ import java.util.List;
 
 @Repository
 public class PersonnageDaoImpl implements PersonnagesDao {
-    public static List<Personnages> personnages = new ArrayList<>();
+    public static List<Personnage> personnages = new ArrayList<>();
 
     static {
-        personnages.add(new Personnages(1, "Thor", "Guerrier", 15));
-        personnages.add(new Personnages(2, "Gandalf", "Magicien", 10));
-
+        personnages.add(new Personnage(1, "Thor", "Guerrier", 15));
+        personnages.add(new Personnage(2, "Gandalf", "Magicien", 10));
     }
 
     @Override
-    public List<Personnages> findAll() {
+    public List<Personnage> findAll() {
 
         return personnages;
     }
 
     @Override
-    public Personnages findById(int id) {
-        for (Personnages personnages : personnages) {
+    public Personnage findById(int id) {
+        for (Personnage personnages : personnages) {
             if (personnages.getId() == id) {
                 return personnages;
             }
@@ -33,20 +32,23 @@ public class PersonnageDaoImpl implements PersonnagesDao {
     }
 
     @Override
-    public Personnages save(Personnages personnage) {
+    public Personnage save(Personnage personnage) {
         personnages.add(personnage);
         return personnage;
     }
 
-//    @Override
-//    public List<Personnages> modifyById(int id) {
-//
-//
-//
-//        String userName = String.valueOf(personnages.get(1));
-//        Personnages superman = this.personnages.set(15);
-//
-//        return personnages;
-//    }
+    @Override
+    public Personnage updateById(int id, Personnage personnage) {
+        Personnage updatePersonnage = findById(id);
+        updatePersonnage.setNom(personnage.getNom());
+        updatePersonnage.setType(personnage.getType());
+        updatePersonnage.setVie(personnage.getVie());
+        return updatePersonnage;
+    }
+
+    @Override
+    public void deleteById(int id) {
+        personnages.removeIf(personnage -> personnage.getId() == id);
+    }
 
 }
