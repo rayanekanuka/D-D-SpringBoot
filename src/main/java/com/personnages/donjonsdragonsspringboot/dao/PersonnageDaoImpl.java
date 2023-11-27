@@ -13,6 +13,8 @@ public class PersonnageDaoImpl implements PersonnagesDao {
     static {
         personnages.add(new Personnage(1, "Thor", "Guerrier", 15));
         personnages.add(new Personnage(2, "Gandalf", "Magicien", 10));
+        personnages.add(new Personnage(3, "Manu", "Guerrier", 15));
+        personnages.add(new Personnage(4, "Massimo", "Magicien", 10));
     }
 
     @Override

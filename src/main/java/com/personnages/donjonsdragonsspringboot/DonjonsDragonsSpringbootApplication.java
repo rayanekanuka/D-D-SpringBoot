@@ -16,5 +16,4 @@ public class DonjonsDragonsSpringbootApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DonjonsDragonsSpringbootApplication.class, args);
 	}
-
 }
