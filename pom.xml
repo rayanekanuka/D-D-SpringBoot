@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.personnages</groupId>
-	<artifactId>donjons-dragons-springboot</artifactId>
+	<artifactId>Application-A</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>donjons-dragons-springboot</name>
 	<description>D-D project sous SpringBoot</description>
