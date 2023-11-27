@@ -28,7 +28,7 @@ public class PersonnagesController {
      *
      * @return les infos des personnages
      */
-    @Operation(summary = "Retourne une liste de personnages")
+    @Operation(summary = "Récupère une liste de personnages")
     @GetMapping("/Personnages")
     public List<Personnage> listePersonnages() {
         return personnagesDao.findAll();
@@ -41,7 +41,7 @@ public class PersonnagesController {
      * @return
      */
 
-    @Operation(summary = "Retourne un personnage par son id")
+    @Operation(summary = "Récupère les infos d'un personnage selon son id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Personnage trouvé",
                     content = {@Content(mediaType = "application/json",
@@ -60,7 +60,7 @@ public class PersonnagesController {
      * @param personnages
      * @return
      */
-    @Operation(summary = "Ajoute un personnage par son id")
+    @Operation(summary = "Ajoute un personnage")
     @PostMapping("/Personnages")
     public Personnage ajouterUnPersonnage(@RequestBody Personnage personnages) {
         return personnagesDao.save(personnages);
@@ -72,7 +72,7 @@ public class PersonnagesController {
      * @param id
      * @return
      */
-    @Operation(summary = "Modifie un personnage par son id")
+    @Operation(summary = "Modifie un personnage selon son id")
     @PutMapping("/Personnages/{id}")
     public Personnage modifierUnPersonnage(@PathVariable int id, @RequestBody Personnage personnage) {
         return personnagesDao.updateById(id, personnage);
@@ -84,7 +84,7 @@ public class PersonnagesController {
      * @param id
      * @return
      */
-    @Operation(summary = "Supprime un personnage par son id")
+    @Operation(summary = "Supprime un personnage selon son id")
     @DeleteMapping("/Personnages/{id}")
     public void supprimerUnPersonnage(@PathVariable int id) {
         personnagesDao.deleteById(id);
