@@ -2,6 +2,11 @@ package com.personnages.donjonsdragonsspringboot.web.controller;
 
 import com.personnages.donjonsdragonsspringboot.dao.PersonnagesDao;
 import com.personnages.donjonsdragonsspringboot.model.Personnage;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,9 +25,10 @@ public class PersonnagesController {
 
     /**
      * Lit toute la liste des personnages
+     *
      * @return les infos des personnages
      */
-
+    @Operation(summary = "Retourne une liste de personnages")
     @GetMapping("/Personnages")
     public List<Personnage> listePersonnages() {
         return personnagesDao.findAll();
@@ -30,9 +36,20 @@ public class PersonnagesController {
 
     /**
      * Lit le personnage identifié par un id
+     *
      * @param id
      * @return
      */
+
+    @Operation(summary = "Retourne un personnage par son id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Personnage trouvé",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Personnage.class))}),
+            @ApiResponse(responseCode = "400", description = "Personnage introuvable",
+                    content = @Content),
+            @ApiResponse(responseCode = "404", description = "Personnage non accessible",
+                    content = @Content)})
     @GetMapping("/Personnages/{id}")
     public Personnage afficherUnPersonnage(@PathVariable int id) {
         return personnagesDao.findById(id);
@@ -43,6 +60,7 @@ public class PersonnagesController {
      * @param personnages
      * @return
      */
+    @Operation(summary = "Ajoute un personnage par son id")
     @PostMapping("/Personnages")
     public Personnage ajouterUnPersonnage(@RequestBody Personnage personnages) {
         return personnagesDao.save(personnages);
@@ -50,9 +68,11 @@ public class PersonnagesController {
 
     /**
      * Modifie un personnage identifié par un id
+     *
      * @param id
      * @return
      */
+    @Operation(summary = "Modifie un personnage par son id")
     @PutMapping("/Personnages/{id}")
     public Personnage modifierUnPersonnage(@PathVariable int id, @RequestBody Personnage personnage) {
         return personnagesDao.updateById(id, personnage);
@@ -60,10 +80,11 @@ public class PersonnagesController {
 
     /**
      * Supprime un personnage identifié par un id
+     *
      * @param id
      * @return
      */
-
+    @Operation(summary = "Supprime un personnage par son id")
     @DeleteMapping("/Personnages/{id}")
     public void supprimerUnPersonnage(@PathVariable int id) {
         personnagesDao.deleteById(id);
