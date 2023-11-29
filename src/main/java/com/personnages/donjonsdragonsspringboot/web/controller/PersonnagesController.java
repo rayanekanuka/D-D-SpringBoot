@@ -37,8 +37,8 @@ public class PersonnagesController {
     /**
      * Lit le personnage identifié par un id
      *
-     * @param id
-     * @return
+     * @param id pour
+     * @return un id du personnage
      */
 
     @Operation(summary = "Récupère les infos d'un personnage selon son id")
@@ -75,7 +75,7 @@ public class PersonnagesController {
     @Operation(summary = "Modifie un personnage selon son id")
     @PutMapping("/Personnages/{id}")
     public Personnage modifierUnPersonnage(@PathVariable int id, @RequestBody Personnage personnage) {
-        return personnagesDao.updateById(id, personnage);
+        return personnagesDao.save(personnage);
     }
 
     /**

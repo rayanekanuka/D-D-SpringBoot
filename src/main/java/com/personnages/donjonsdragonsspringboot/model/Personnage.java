@@ -1,9 +1,21 @@
 package com.personnages.donjonsdragonsspringboot.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.*;
+
+
+@Entity
 public class Personnage {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Schema (name = "id", example = "1", required = true)
     private int id;
+    @Schema (name = "nom", example = "JB")
     private String nom;
+    @Schema (name = "type", example = "Guerrier")
     private String type;
+    @Schema (name = "life", example = "15")
+    @Column (name = "life", nullable = false)
     private int vie;
 
     public Personnage(int id, String nom, String type, int vie) {
@@ -11,6 +23,10 @@ public class Personnage {
         this.nom = nom;
         this.type = type;
         this.vie = vie;
+    }
+
+    public Personnage() {
+
     }
 
     public int getId() {

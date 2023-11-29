@@ -1,3 +1,4 @@
+/*
 package com.personnages.donjonsdragonsspringboot.dao;
 
 import com.personnages.donjonsdragonsspringboot.model.Personnage;
@@ -54,3 +55,4 @@ public class PersonnageDaoImpl implements PersonnagesDao {
     }
 
 }
+*/
