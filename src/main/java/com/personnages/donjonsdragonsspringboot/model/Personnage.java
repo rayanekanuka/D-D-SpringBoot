@@ -10,7 +10,7 @@ public class Personnage {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Schema (name = "id", example = "1", required = true)
     private int id;
-    @Schema (name = "nom", example = "JB")
+    @Schema (name = "nom", example = "Massimo")
     private String nom;
     @Schema (name = "type", example = "Guerrier")
     private String type;
