@@ -5,17 +5,26 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
 /**
- * @Entity sert à
+ * @Entity nous indique que c'est cette classe est une classe persistante :
+ * avec un attribut name, qui fixe le nom de l'entité
+ * L'annotation @Table permet de fixer le nom de la table
+ * dans laquelle les instances de cette classe vont être écrites.
  */
 
 @Entity
 @Table(name = "personnage")
 public class Personnage {
+    // permet de mapper une clé primaire sur un champ unique
     @Id
-    // @Generatedvalue sert pour l'auto-incrementation
+    /* @GeneratedValue sert pour l'auto-incrementation lors de l'insertion en base
+    Cette annotation possède plusieurs attributs = strategy, generator.
+    Il est possible de définir le mode de génération de la clé primaire à l'aide de l'attribut "strategy"
+    Ici le GenerationType.AUTO : la génération de la clé primaire est laissée à l'implémentation
+    C’est Hibernate qui s’en charge et qui crée une séquence unique sur tout le schéma via la table hibernate_sequence. */
     @GeneratedValue(strategy = GenerationType.AUTO)
-    // @Schema sert pour la doc Swagger
+    // @Schema sert pour la description en doc Swagger
     @Schema (name = "id", example = "1", required = true)
+    // permet de préciser la colonne, ou peut aussi se placer sur un getter
     @Column (name = "id", nullable = false)
     @NotNull
     private int id;
@@ -33,7 +42,7 @@ public class Personnage {
     @Schema (name = "life", example = "15")
     @Column (name = "life", nullable = false)
     @NotNull
-    @Min(value = 3, message = "Les points de vies ne peuvent pas être en-dessous de 3")
+    @Min(value = 1, message = "Les points de vies ne peuvent pas être en-dessous de 3")
     @Max(value = 999, message = "Les points de vies ne peuvent pas être au-dessus de 999")
     @PositiveOrZero(message = "Attention action non autorisée")
     private int vie;

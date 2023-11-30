@@ -69,7 +69,7 @@ public class PersonnagesController {
      */
     @Operation(summary = "Ajoute un personnage")
     @PostMapping("/Personnages")
-    public Personnage ajouterUnPersonnage(@RequestBody Personnage personnages) {
+    public Personnage ajouterUnPersonnage(@Validated @RequestBody Personnage personnages) {
         return personnagesDao.save(personnages);
     }
 
@@ -81,7 +81,7 @@ public class PersonnagesController {
      */
     @Operation(summary = "Modifie un personnage selon son id")
     @PutMapping("/Personnages/{id}")
-    public Personnage modifierUnPersonnage(@Valid @RequestBody Personnage personnage) {
+    public Personnage modifierUnPersonnage(@Validated @RequestBody Personnage personnage) {
         return personnagesDao.save(personnage);
     }
 
@@ -93,7 +93,7 @@ public class PersonnagesController {
      */
     @Operation(summary = "Supprime un personnage selon son id")
     @DeleteMapping("/Personnages/{id}")
-    public void supprimerUnPersonnage(@PathVariable int id) {
+    public void supprimerUnPersonnage(@Validated @PathVariable int id) {
         personnagesDao.deleteById(id);
     }
 
