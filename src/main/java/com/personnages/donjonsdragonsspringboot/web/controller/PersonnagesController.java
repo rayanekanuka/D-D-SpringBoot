@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,7 +58,7 @@ public class PersonnagesController {
             @ApiResponse(responseCode = "404", description = "Personnage non accessible",
                     content = @Content)})
     @GetMapping("/Personnages/{id}")
-    public Personnage afficherUnPersonnage(@PathVariable int id) {
+    public Personnage afficherUnPersonnage(@Validated @PathVariable int id) {
         return personnagesDao.findById(id);
     }
 

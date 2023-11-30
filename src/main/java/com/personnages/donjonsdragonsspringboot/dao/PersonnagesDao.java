@@ -13,4 +13,5 @@ public interface PersonnagesDao extends JpaRepository<Personnage, Integer> {
     Personnage save(Personnage personnages);
     void deleteById(int id);
 //    Personnage updateById(int id, Personnage personnage);
+    Personnage updateByIdAndNom(int id, Personnage perso, String nom);
 }

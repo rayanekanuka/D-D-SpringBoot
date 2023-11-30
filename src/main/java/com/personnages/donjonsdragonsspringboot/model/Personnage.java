@@ -4,11 +4,17 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
+/**
+ * @Entity sert à
+ */
+
 @Entity
 @Table(name = "personnage")
 public class Personnage {
     @Id
+    // @Generatedvalue sert pour l'auto-incrementation
     @GeneratedValue(strategy = GenerationType.AUTO)
+    // @Schema sert pour la doc Swagger
     @Schema (name = "id", example = "1", required = true)
     @Column (name = "id", nullable = false)
     @NotNull
@@ -21,7 +27,7 @@ public class Personnage {
 
     @Schema (name = "type", example = "Guerrier")
     @Column (name = "type", nullable = false)
-    @NotBlank (message = "Le nom type obligatoire")
+    @NotBlank (message = "Le type est obligatoire")
     @Size(min = 3, max = 40, message = "Le type doit être compris entre 3 et 40 caractères")
     private String type;
     @Schema (name = "life", example = "15")
