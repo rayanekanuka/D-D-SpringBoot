@@ -1,14 +1,16 @@
 package com.personnages.donjonsdragonsspringboot.web.controller;
 
 import com.personnages.donjonsdragonsspringboot.dao.PersonnagesDao;
+import com.personnages.donjonsdragonsspringboot.exception.ResourceNotFoundException;
 import com.personnages.donjonsdragonsspringboot.model.Personnage;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import jakarta.validation.Valid;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -81,8 +83,15 @@ public class PersonnagesController {
      */
     @Operation(summary = "Modifie un personnage selon son id")
     @PutMapping("/Personnages/{id}")
-    public Personnage modifierUnPersonnage(@Validated @RequestBody Personnage personnage) {
-        return personnagesDao.save(personnage);
+    public ResponseEntity<Personnage> modifierUnPersonnage(@Validated @PathVariable int id, @RequestBody Personnage personnage) {
+        Personnage updatePersona = personnagesDao.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Le héros n'existe pas sous cet ID" + id));
+        updatePersona.setNom(personnage.getNom());
+        updatePersona.setType(personnage.getType());
+        updatePersona.setVie(personnage.getVie());
+        personnagesDao.save(updatePersona);
+
+        return ResponseEntity.ok(updatePersona);
     }
 
     /**
