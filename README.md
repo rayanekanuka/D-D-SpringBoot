@@ -4,7 +4,7 @@
 Le but de ce projet est la découverte du framework Spring Boot pour Java ainsi que de découvrir certains aspects de l’architecture microservices.
 
 1. Découverte de Spring Boot.
-2. Consolider vos connaissances en Java.
+2. Consolider les connaissances en Java.
 3. Découvrir l’architecture microservices.
 4. Créer des API REST.
 
